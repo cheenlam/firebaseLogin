@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <title>firebase Login</title>
+
+</head>
+
+<body>
+
+    <div class="iptBox">
+        <div class="iptTitle">LOGIN</div>
+        <label>
+            <span>帳號：</span>
+            <input type="text" id="account">
+        </label>
+
+        <label>
+            <span>密碼：</span>
+            <input type="password" id="password">
+        </label>
+
+        <label>
+            <span>姓名：</span>
+            <input type="text" id="name">
+        </label>
+        <div class="iptBtn" id="iptBtn">
+            <button onclick="cksign()">查詢狀態</button>
+            <button onclick="forget()">忘記密碼</button>
+            <button onclick="signOut()">登出</button>
+            <button onclick="regd()">Email註冊</button>
+            <button onclick="signIn()">Email登入</button>
+            <button onclick="inGoogle()">Google登入</button>
+        </div>
+    </div>
+
+    <div class="show">
+        <p>會員ID：<span id="showAcct"></span></p>
+        <p>會員點數：<span id="showPoint"></span></p>
+    </div>
+
+    <div class="ranGame" id="ranGame">
+        <button>ranGame</button>
+        <p>Ran：<span></span></p>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

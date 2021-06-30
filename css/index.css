@@ -1,0 +1,172 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: no-repeat url(https://img.51miz.com/Photo/2017/04/27/21/P848895_1893a75fb13d3c54441162f35c31e6c2.jpg) center / cover;
+}
+
+.iptBox {
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 0.9);
+    background: linear-gradient(40deg, rgba(241, 117, 117, 0.5),
+            rgba(255, 255, 255, 0.5), rgba(135, 135, 240, 0.6));
+    margin-bottom: 20px;
+}
+
+.iptTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 1px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 2px #666;
+}
+
+.iptBox label {
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+.iptBox label+label {
+    margin-top: 10px;
+}
+
+.iptBox span {
+    width: 50px;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.iptBox input {
+    width: 100%;
+    height: 25px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.iptBtn {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.iptBtn button {
+    width: calc(100% / 3 - 4px);
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: .5s;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.iptBtn button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.iptBtn button+button {
+    margin: 2px 0;
+}
+
+.show {
+    min-width: 300px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #333;
+    background-color: #fff;
+}
+
+.show p+p {
+    margin-left: 10px;
+}
+
+.ranGame {
+    width: 300px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+
+}
+
+.ranGame p {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.ranGame button {
+    width: 100px;
+    height: 30px;
+    margin-right: 5px;
+    border: none;
+    background-color: rgb(165, 47, 47);
+    box-shadow: 2px 2px 2px #333;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.ranGame button::before {
+    content: '';
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -10%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 40%,
+            rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.5)) 60%;
+    transition: .3s;
+    transform: skew(30deg);
+}
+
+.ranGame button:hover::before {
+    left: unset;
+    right: -10%;
+    animation: ranGame .3s forwards linear;
+}
+
+@keyframes ranGame {
+    0% {
+        width: 0%;
+        left: -10%;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+        left: 110%;
+    }
+}
+
+.ranGame button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
