@@ -203,4 +203,8 @@ $('#reviseBtn').click(function(){
 })
 
 
+$('#reviseClose').click(function(){
+    $('#reviseBox').removeClass('on')
+})
+
 
