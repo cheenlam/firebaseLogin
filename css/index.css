@@ -56,7 +56,7 @@ body {
     border: none;
     outline: none;
     padding: 0 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #ccc;
 }
 
 .iptBtn {
@@ -78,7 +78,7 @@ body {
     opacity: 0.9;
 }
 
-.iptBtn button:hover {
+.iptBtn button:active {
     background-color: #000;
     color: #fff;
 }
@@ -169,4 +169,76 @@ body {
 .ranGame button:active {
     transform: translateY(2px);
     box-shadow: none;
+}
+
+.reviseBox{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviseBox.on{
+    display: flex;
+}
+
+.reviseBody{
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviseBody label{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid rgb(111, 117, 136);
+    font-size: 14px;
+}
+
+.reviseBody label+label{
+    margin-top: 5px;
+}
+
+.reviseBody span{
+    width: 90px;   
+    font-weight: bold;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.reviseBody input{
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.reviseBody input:disabled{
+    background-color: #ccc;
+    color: #999;
+}
+
+.reviseBody button{
+    height: 30px;
+    background-color: #000;
+    color: #fff;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 2px;
 }

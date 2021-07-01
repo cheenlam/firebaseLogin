@@ -1,3 +1,5 @@
+window.onload = function(){cksign()}
+
 var firebaseConfig = {
     apiKey: "AIzaSyAgZwvI140YQ0w-nLzg2NMHGD7LT8xA0ig",
     authDomain: "login-a4c56.firebaseapp.com",
@@ -7,6 +9,7 @@ var firebaseConfig = {
     appId: "1:446192149335:web:c1bbb2ba15206bb5921412",
     measurementId: "G-2ZYH9PZFK0"
 };
+
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.firestore();
@@ -35,7 +38,7 @@ function errorMsg(code) {
 function regd() {
     let email = $('#account').val()
     let password = $('#password').val()
-    let myName = $('#name').val() || 'member'
+    let myName = $('#name').val() || 'Member'
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -45,6 +48,7 @@ function regd() {
             db.collection("member").doc(result.user.uid).set({
                 name: myName,
                 points: 0,
+                phone:'',
             })
 
         })
@@ -62,6 +66,8 @@ function signIn() {
         .signInWithEmailAndPassword(email, password)
         .then(result => {
             alert('登入成功');
+
+            console.log(result);
         })
         .catch(error => {
             // console.log(error);
@@ -81,10 +87,13 @@ firebase.auth().getRedirectResult().then((result) => {
     if (result.credential) {
         var credential = result.credential;
         var token = credential.accessToken;
+        console.log(result)
+
         if (result.additionalUserInfo.isNewUser) {
             db.collection("member").doc(result.user.uid).set({
-                name: result.user.displayName,
+                name: result.additionalUserInfo.profile.name,
                 points: 0,
+                phone:'',
             })
         }
     }
@@ -101,19 +110,23 @@ firebase.auth().getRedirectResult().then((result) => {
 // 查詢會員資料狀態
 function cksign() {
     firebase.auth().onAuthStateChanged(function (user) {
+
         if (user) {
             // console.log(user.uid)
             // console.log(user)
             // 使用者已登入，可以取得資料
-            var email = user.email;
             var uid = user.uid;
-
             var docRef = db.collection("member").doc(uid);
+
+            // console.log(user);
             docRef.get().then(function (doc) {
-                console.log(doc.data());
+                // console.log(doc.data());
 
                 $('#showAcct').text(doc.data().name)
                 $('#showPoint').text(doc.data().points)
+  
+                $('#reviseMember').val(doc.data().name)
+                $('#revisePhone').val(doc.data().phone)
             })
         } else {
             // 使用者未登入
@@ -165,4 +178,29 @@ $('#ranGame button').click(function () {
     });
 })
 
-$(window).load(cksign())
+
+
+function revise() {
+    $('#reviseBox').addClass("on")
+}
+
+
+$('#reviseBtn').click(function(){
+
+    var reviseMember = $('#reviseMember').val()
+    var revisePhone = $('#revisePhone').val()
+    // console.log(reviseMember)
+    
+    firebase.auth().onAuthStateChanged(function (user){
+        db.collection("member").doc(user.uid).update({
+            name: reviseMember,
+            phone:revisePhone,
+        })
+    }) 
+
+    cksign()
+    $('#reviseBox').removeClass('on')
+})
+
+
+
