@@ -56,7 +56,7 @@ body {
     border: none;
     outline: none;
     padding: 0 10px;
-    background-color: #ccc;
+    background-color: rgba(204, 204, 204, 0.4);
 }
 
 .iptBtn {
@@ -75,10 +75,11 @@ body {
     outline: none;
     transition: .5s;
     border-radius: 5px;
+    background-color: rgba(186, 185, 245, 0.5);
 }
 
 .iptBtn button:active {
-    background-color: #000;
+    background-color: rgb(94, 73, 209);
     color: #fff;
 }
 
