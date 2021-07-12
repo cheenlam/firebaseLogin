@@ -61,7 +61,7 @@ function regd() {
 function signIn() {
     let email = $('#account').val()
     let password = $('#password').val()
-
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(result => {
