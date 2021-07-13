@@ -1,4 +1,4 @@
-window.onload = function(){cksign()}
+window.onload = function () { cksign() }
 
 var firebaseConfig = {
     apiKey: "AIzaSyAgZwvI140YQ0w-nLzg2NMHGD7LT8xA0ig",
@@ -48,7 +48,7 @@ function regd() {
             db.collection("member").doc(result.user.uid).set({
                 name: myName,
                 points: 0,
-                phone:'',
+                phone: '',
             })
 
         })
@@ -61,7 +61,7 @@ function regd() {
 function signIn() {
     let email = $('#account').val()
     let password = $('#password').val()
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+
     firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(result => {
@@ -76,6 +76,7 @@ function signIn() {
             errorMsg(error.code)
         });
 }
+
 
 // google登入
 function inGoogle() {
@@ -93,7 +94,7 @@ firebase.auth().getRedirectResult().then((result) => {
             db.collection("member").doc(result.user.uid).set({
                 name: result.additionalUserInfo.profile.name,
                 points: 0,
-                phone:'',
+                phone: '',
             })
         }
     }
@@ -118,16 +119,29 @@ function cksign() {
             var uid = user.uid;
             var docRef = db.collection("member").doc(uid);
 
+            console.log("使用者登入中");
             // console.log(user);
             docRef.get().then(function (doc) {
-                // console.log(doc.data());
+                // console.log(doc);
 
                 $('#showAcct').text(doc.data().name)
                 $('#showPoint').text(doc.data().points)
-  
+
                 $('#reviseMember').val(doc.data().name)
                 $('#revisePhone').val(doc.data().phone)
             })
+
+
+            user.providerData.forEach((profile) => {
+                console.log("Sign-in provider: " + profile.providerId);
+                console.log("  Provider-specific UID: " + profile.uid);
+                console.log("  Name: " + profile.displayName);
+                console.log("  Email: " + profile.email);
+                console.log("  Photo URL: " + profile.photoURL);
+            });
+
+
+
         } else {
             // 使用者未登入
             console.log("使用者未登入");
@@ -185,25 +199,24 @@ function revise() {
 }
 
 
-$('#reviseBtn').click(function(){
-
+$('#reviseBtn').click(function () {
     var reviseMember = $('#reviseMember').val()
     var revisePhone = $('#revisePhone').val()
     // console.log(reviseMember)
-    
-    firebase.auth().onAuthStateChanged(function (user){
+
+    firebase.auth().onAuthStateChanged(function (user) {
         db.collection("member").doc(user.uid).update({
             name: reviseMember,
-            phone:revisePhone,
+            phone: revisePhone,
         })
-    }) 
+    })
 
     cksign()
     $('#reviseBox').removeClass('on')
 })
 
 
-$('#reviseClose').click(function(){
+$('#reviseClose').click(function () {
     $('#reviseBox').removeClass('on')
 })
 
